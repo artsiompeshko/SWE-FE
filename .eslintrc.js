@@ -25,5 +25,13 @@ module.exports = {
   plugins: ['react', 'prettier'],
   rules: {
     'prettier/prettier': 'error',
+    'import/prefer-default-export': 'off',
+    'react/jsx-props-no-spreading': 'off',
+    'import/no-unresolved': [
+      'error',
+      {
+        ignore: ['components', 'core', 'shared-components'],
+      },
+    ],
   },
 };
