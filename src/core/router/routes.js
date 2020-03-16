@@ -12,8 +12,4 @@ export const routes = [
     path: '/games',
     component: Games,
   },
-  {
-    'editor.defaultFormatter': 'esbenp.prettier-vscode',
-    'editor.formatOnSave': true,
-  },
 ];
