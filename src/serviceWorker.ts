@@ -41,6 +41,7 @@ export function register(config?: Config) {
 
       if (isLocalhost) {
         // This is running on localhost. Let's check if a service worker still exists or not.
+        // eslint-disable-next-line @typescript-eslint/no-use-before-define
         checkValidServiceWorker(swUrl, config);
 
         // Add some additional logging to localhost, pointing developers to the
@@ -53,6 +54,7 @@ export function register(config?: Config) {
         });
       } else {
         // Is not localhost. Just register service worker
+        // eslint-disable-next-line @typescript-eslint/no-use-before-define
         registerValidSW(swUrl, config);
       }
     });
@@ -63,6 +65,7 @@ function registerValidSW(swUrl: string, config?: Config) {
   navigator.serviceWorker
     .register(swUrl)
     .then(registration => {
+      // eslint-disable-next-line no-param-reassign
       registration.onupdatefound = () => {
         const installingWorker = registration.installing;
         if (installingWorker == null) {
@@ -144,3 +147,5 @@ export function unregister() {
       });
   }
 }
+
+register();
