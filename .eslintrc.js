@@ -33,5 +33,11 @@ module.exports = {
         ignore: ['components', 'core', 'shared-components'],
       },
     ],
+    'react/prop-types': [
+      'error',
+      {
+        ignore: ['children', 'history', 'location'],
+      },
+    ],
   },
 };
