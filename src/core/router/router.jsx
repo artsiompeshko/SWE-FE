@@ -2,7 +2,7 @@ import React from 'react';
 
 import { BrowserRouter as DomRouter, Switch, Route, Link } from 'react-router-dom';
 
-import { Navigation } from 'shared-components/navigation';
+import { Navigation } from 'components/navigation';
 
 import { makeStyles } from '@material-ui/core/styles';
 

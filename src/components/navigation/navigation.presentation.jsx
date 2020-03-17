@@ -52,6 +52,12 @@ const Navigation = () => {
           </ListItemIcon>
           <ListItemText>Games</ListItemText>
         </ListItemLink>
+        <ListItemLink to="/players/view">
+          <ListItemIcon>
+            <GamesIcon />
+          </ListItemIcon>
+          <ListItemText>Players</ListItemText>
+        </ListItemLink>
       </List>
     </Drawer>
   );
