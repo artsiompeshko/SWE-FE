@@ -11,7 +11,7 @@ import { Loadable } from 'shared-components/loadable';
 import PlayersView from './players-view.presentation';
 
 const getPlayers = async () => {
-  const players = await axios.get(API.PLAYERS);
+  const { data: players } = await axios.get(API.PLAYERS);
 
   return players;
 };
