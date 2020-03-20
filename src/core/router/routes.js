@@ -1,6 +1,9 @@
 import { GamesView } from 'components/games/view';
 import { GamesNew } from 'components/games/new';
+
 import { PlayersView } from 'components/players/view';
+
+import { StatisticsView } from 'components/statistics/view';
 
 // Some folks find value in a centralized route config.
 // A route config is just data. React is great at mapping
@@ -10,6 +13,10 @@ import { PlayersView } from 'components/players/view';
 // with `path` and `component` props, ordered the same
 // way you'd do inside a `<Switch>`.
 export const routes = [
+  {
+    path: '/statistics/view',
+    component: StatisticsView,
+  },
   {
     path: '/games/view',
     component: GamesView,

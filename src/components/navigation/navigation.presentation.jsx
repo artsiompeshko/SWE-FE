@@ -3,13 +3,13 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 
 import Drawer from '@material-ui/core/Drawer';
-import Divider from '@material-ui/core/Divider';
 import List from '@material-ui/core/List';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 
 import EqualizerIcon from '@material-ui/icons/Equalizer';
 import GamesIcon from '@material-ui/icons/Games';
+import RowingIcon from '@material-ui/icons/Rowing';
 
 import { ListItemLink } from 'shared-components/list-item-link';
 
@@ -40,7 +40,7 @@ const Navigation = () => {
     >
       <div className={classes.toolbar} />
       <List>
-        <ListItemLink to="/statistics">
+        <ListItemLink to="/statistics/view">
           <ListItemIcon>
             <EqualizerIcon />
           </ListItemIcon>
@@ -54,7 +54,7 @@ const Navigation = () => {
         </ListItemLink>
         <ListItemLink to="/players/view">
           <ListItemIcon>
-            <GamesIcon />
+            <RowingIcon />
           </ListItemIcon>
           <ListItemText>Players</ListItemText>
         </ListItemLink>
