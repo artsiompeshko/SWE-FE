@@ -2,6 +2,7 @@ import { GamesView } from 'components/games/view';
 import { GamesNew } from 'components/games/new';
 
 import { PlayersView } from 'components/players/view';
+import { PlayersNew } from 'components/players/new';
 
 import { StatisticsView } from 'components/statistics/view';
 
@@ -28,5 +29,9 @@ export const routes = [
   {
     path: '/players/view',
     component: PlayersView,
+  },
+  {
+    path: '/players/new',
+    component: PlayersNew,
   },
 ];
