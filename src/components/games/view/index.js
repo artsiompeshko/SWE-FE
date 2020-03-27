@@ -1,1 +1,1 @@
-export { default as GamesView } from './games-view.presentation';
+export { default as GamesView } from './games-view.fetcher';
