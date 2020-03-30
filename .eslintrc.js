@@ -27,6 +27,7 @@ module.exports = {
     'prettier/prettier': 'error',
     'import/prefer-default-export': 'off',
     'react/jsx-props-no-spreading': 'off',
+    'no-prototype-builtins': 'off',
     'import/no-unresolved': [
       'error',
       {

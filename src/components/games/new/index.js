@@ -1,1 +1,1 @@
-export { default as GamesNew } from './games-new.presentation';
+export { default as GamesNew } from './games-new.fetcher';

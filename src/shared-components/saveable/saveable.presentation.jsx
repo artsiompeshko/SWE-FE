@@ -42,7 +42,7 @@ const Saveable = ({ children, saveHandler, isLoading, loadError }) => {
           <LoadingButton
             variant="contained"
             color="primary"
-            size="mediom"
+            size="medium"
             type="submit"
             className={classes.submit}
             isLoading={isLoading}
@@ -53,7 +53,7 @@ const Saveable = ({ children, saveHandler, isLoading, loadError }) => {
           </LoadingButton>
           <Button
             variant="contained"
-            size="mediom"
+            size="medium"
             type="button"
             startIcon={<SaveIcon />}
             onClick={goBack}

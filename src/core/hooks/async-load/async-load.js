@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
 export default loader => {
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [loadError, setLoadError] = useState(null);
   const [payload, setPayload] = useState(null);
 

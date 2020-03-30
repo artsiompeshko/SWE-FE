@@ -4,4 +4,5 @@ export const API = {
   PLAYERS: `${BASE_API}/players`,
   GENERAL_STATISTIC: `${BASE_API}/statistics/general`,
   GAMES: `${BASE_API}/games`,
+  GAME_RESULTS: `${BASE_API}/game-results`,
 };
