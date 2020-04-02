@@ -30,8 +30,59 @@ const convertForApi = ({ gameResults }) =>
 const isValid = ({ rows }) =>
   rows.every(row => Object.values(row).every(metric => metric || metric === 0));
 
+const calculateTotal = ({ row }) => {
+  const result = {
+    ...row,
+  };
+
+  const skipKeys = ['playerId', 'place', 'total', 'id'];
+
+  const calculatableKeys = Object.keys(row).filter(rowKey => !skipKeys.includes(rowKey));
+
+  result.total = 0;
+  calculatableKeys.forEach(calculatableKey => {
+    result.total += +row[calculatableKey];
+  });
+
+  return result;
+};
+
+const calculatePlace = ({ row, rows }) => {
+  const sortedRows = rows.sort((row1, row2) => {
+    if (row2.total !== row1.total) {
+      return +row2.total - +row1.total;
+    }
+
+    return +row2.gold - +row1.gold;
+  });
+
+  return {
+    ...row,
+    place: sortedRows.findIndex(rowItem => rowItem.id === row.id) + 1,
+  };
+};
+
+const calculateRows = ({ rows }) => {
+  let result = [...rows];
+
+  result = result.map(row => {
+    const withTotal = calculateTotal({ row });
+
+    return withTotal;
+  });
+
+  result = result.map(row => {
+    const withPlace = calculatePlace({ row, rows: [...result] });
+
+    return withPlace;
+  });
+
+  return result;
+};
+
 const gamesNewService = {
   transformGridDataToGameResults,
+  calculateRows,
   extendWithGame,
   convertForApi,
   isValid,

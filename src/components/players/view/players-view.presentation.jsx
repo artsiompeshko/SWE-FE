@@ -43,9 +43,7 @@ const PlayersView = ({ players }) => {
           {players &&
             players.map(player => (
               <TableRow key={player.id}>
-                <TableCell component="th" scope="row">
-                  {player.name}
-                </TableCell>
+                <TableCell>{player.name}</TableCell>
                 <TableCell>{player.email}</TableCell>
               </TableRow>
             ))}

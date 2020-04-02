@@ -41,10 +41,10 @@ const GamesView = ({ games }) => {
         </TableHead>
         <TableBody component="div">
           {games &&
-            games.map(game => (
+            games.map((game, index) => (
               <TableRow hover key={game.id} component={NavLink} to={`/games/${game.id}`}>
                 <TableCell component="div" scope="row">
-                  Game no. {game.id}
+                  Game no. {index + 1}
                 </TableCell>
                 <TableCell component="div">{new Date(game.createdAt).toDateString()}</TableCell>
               </TableRow>

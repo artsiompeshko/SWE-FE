@@ -1,1 +1,1 @@
-export { default as PlayersView } from './game-results-view.fetcher';
+export { default as GameResultsView } from './game-results-view.fetcher';

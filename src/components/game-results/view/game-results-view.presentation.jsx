@@ -35,18 +35,34 @@ const GameResultsView = ({ gameResults }) => {
       <Table className={classes.table} aria-label="Game Results View">
         <TableHead>
           <TableRow>
-            <TableCell>Name</TableCell>
-            <TableCell>Email</TableCell>
+            <TableCell>Player Name</TableCell>
+            <TableCell>Brown</TableCell>
+            <TableCell>Gold</TableCell>
+            <TableCell>Levels</TableCell>
+            <TableCell>Blue</TableCell>
+            <TableCell>Yellow</TableCell>
+            <TableCell>Purple</TableCell>
+            <TableCell>Green</TableCell>
+            <TableCell>Heros</TableCell>
+            <TableCell>Place</TableCell>
+            <TableCell>Total</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {gameResults &&
             gameResults.map(gameResult => (
               <TableRow key={gameResult.id}>
-                <TableCell component="th" scope="row">
-                  {gameResult.name}
-                </TableCell>
-                <TableCell>{gameResult.email}</TableCell>
+                <TableCell>{gameResult.player.name}</TableCell>
+                <TableCell>{gameResult.brown}</TableCell>
+                <TableCell>{gameResult.gold}</TableCell>
+                <TableCell>{gameResult.levels}</TableCell>
+                <TableCell>{gameResult.blue}</TableCell>
+                <TableCell>{gameResult.yellow}</TableCell>
+                <TableCell>{gameResult.purple}</TableCell>
+                <TableCell>{gameResult.green}</TableCell>
+                <TableCell>{gameResult.heros}</TableCell>
+                <TableCell>{gameResult.place}</TableCell>
+                <TableCell>{gameResult.total}</TableCell>
               </TableRow>
             ))}
         </TableBody>
@@ -61,13 +77,25 @@ const GameResultsView = ({ gameResults }) => {
 };
 
 GameResultsView.defaultProps = {
-  gameResults: null,
+  gameResults: [],
 };
 
 GameResultsView.propTypes = {
   gameResults: PropTypes.arrayOf(
     PropTypes.shape({
-      name: PropTypes.string.isRequired,
+      player: PropTypes.shape({
+        name: PropTypes.string.isRequired,
+      }).isRequired,
+      brown: PropTypes.number.isRequired,
+      gold: PropTypes.number.isRequired,
+      levels: PropTypes.number.isRequired,
+      blue: PropTypes.number.isRequired,
+      yellow: PropTypes.number.isRequired,
+      purple: PropTypes.number.isRequired,
+      green: PropTypes.number.isRequired,
+      heros: PropTypes.number.isRequired,
+      place: PropTypes.number.isRequired,
+      total: PropTypes.number.isRequired,
     }),
   ),
 };

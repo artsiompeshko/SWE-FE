@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-export default loader => {
+export default (loader, ...params) => {
   const [isLoading, setIsLoading] = useState(true);
   const [loadError, setLoadError] = useState(null);
   const [payload, setPayload] = useState(null);
@@ -11,7 +11,7 @@ export default loader => {
         setIsLoading(true);
         setLoadError(null);
 
-        const result = await loader();
+        const result = await loader(...params);
 
         setPayload(result);
         setIsLoading(false);

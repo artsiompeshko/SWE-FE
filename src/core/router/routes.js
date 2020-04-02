@@ -1,6 +1,8 @@
 import { GamesView } from 'components/games/view';
 import { GamesNew } from 'components/games/new';
 
+import { GameResultsView } from 'components/game-results/view';
+
 import { PlayersView } from 'components/players/view';
 import { PlayersNew } from 'components/players/new';
 
@@ -25,6 +27,10 @@ export const routes = [
   {
     path: '/games/new',
     component: GamesNew,
+  },
+  {
+    path: '/games/:gameId',
+    component: GameResultsView,
   },
   {
     path: '/players/view',

@@ -2,6 +2,8 @@ import React, { useState, useCallback } from 'react';
 
 import { Editors } from 'react-data-grid-addons';
 
+import { gamesNewService } from '../games-new.service';
+
 const { DropDownEditor } = Editors;
 
 const getPlayersEditor = players => {
@@ -54,11 +56,14 @@ export const useGrid = ({
 
   const onRowsUpdate = ({ fromRow, toRow, updated }) => {
     const nextRows = rows.slice();
+
     for (let i = fromRow; i <= toRow; i += 1) {
       nextRows[i] = { ...nextRows[i], ...updated };
     }
 
-    setRows(nextRows);
+    const calculatedRows = gamesNewService.calculateRows({ rows: nextRows });
+
+    setRows(calculatedRows);
   };
 
   const onNewGrid = useCallback(() => {
