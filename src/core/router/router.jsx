@@ -78,7 +78,7 @@ function RouteWithSubRoutes(route) {
   );
 
   if (route.permissions && route.permissions === PERMISSIONS.ADMIN) {
-    return <AdminPermissions>{renderRoute()}</AdminPermissions>;
+    return <AdminPermissions showForbidden>{renderRoute()}</AdminPermissions>;
   }
 
   return renderRoute();

@@ -2,12 +2,10 @@ import React from 'react';
 
 import { userService } from 'core/user';
 
-class AdminPermissions extends React.Component {
-  render() {
-    const { children } = this.props;
+import AdminPermissions from './admin-permissions.presentation';
 
-    return userService.isAdmin() ? children : null;
-  }
-}
+const AdminPermissionsContainer = props => (
+  <AdminPermissions isAdmin={userService.isAdmin()} {...props} />
+);
 
-export default AdminPermissions;
+export default AdminPermissionsContainer;
