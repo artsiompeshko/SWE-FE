@@ -5,6 +5,8 @@ import { makeStyles } from '@material-ui/core/styles';
 
 import { NavLink } from 'react-router-dom';
 
+import { AdminPermissions } from 'shared-components/admin-permissions';
+
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -49,11 +51,13 @@ const PlayersView = ({ players }) => {
             ))}
         </TableBody>
       </Table>
-      <NavLink to="new">
-        <Fab color="secondary" aria-label="add" className={classes.fad}>
-          <AddIcon />
-        </Fab>
-      </NavLink>
+      <AdminPermissions>
+        <NavLink to="new">
+          <Fab color="secondary" aria-label="add" className={classes.fad}>
+            <AddIcon />
+          </Fab>
+        </NavLink>
+      </AdminPermissions>
     </TableContainer>
   );
 };

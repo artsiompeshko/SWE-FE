@@ -2,7 +2,10 @@ import React from 'react';
 
 import { BrowserRouter as DomRouter, Switch, Route, Link } from 'react-router-dom';
 
+import { AdminPermissions } from 'shared-components/admin-permissions';
 import { Navigation } from 'components/navigation';
+
+import { PERMISSIONS } from 'core/constants/permissions';
 
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -64,7 +67,7 @@ const Router = () => {
 // handle "sub"-routes by passing them in a `routes`
 // prop to the component it renders.
 function RouteWithSubRoutes(route) {
-  return (
+  const renderRoute = () => (
     <Route
       path={route.path}
       render={props => (
@@ -73,6 +76,12 @@ function RouteWithSubRoutes(route) {
       )}
     />
   );
+
+  if (route.permissions && route.permissions === PERMISSIONS.ADMIN) {
+    return <AdminPermissions>{renderRoute()}</AdminPermissions>;
+  }
+
+  return renderRoute();
 }
 
 export default Router;
