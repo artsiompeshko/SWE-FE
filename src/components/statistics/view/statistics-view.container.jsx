@@ -6,8 +6,8 @@ import { arrayUtils } from 'core/utils';
 import StatisticsView from './statistics-view.presentation';
 
 const StatisticsViewContainer = ({ statistics }) => {
-  const [order, setOrder] = useState('asc');
-  const [orderBy, setOrderBy] = useState('playerName');
+  const [order, setOrder] = useState('desc');
+  const [orderBy, setOrderBy] = useState('averageScore');
 
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === 'asc';
