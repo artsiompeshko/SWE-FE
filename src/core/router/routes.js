@@ -8,6 +8,8 @@ import { PlayersNew } from 'components/players/new';
 
 import { StatisticsView } from 'components/statistics/view';
 
+import { Home } from 'components/home';
+
 import { PERMISSIONS } from 'core/constants/permissions';
 
 // Some folks find value in a centralized route config.
@@ -18,6 +20,11 @@ import { PERMISSIONS } from 'core/constants/permissions';
 // with `path` and `component` props, ordered the same
 // way you'd do inside a `<Switch>`.
 export const routes = [
+  {
+    path: '/',
+    exact: true,
+    component: Home,
+  },
   {
     path: '/statistics/view',
     component: StatisticsView,

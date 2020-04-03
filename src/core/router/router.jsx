@@ -26,6 +26,9 @@ const useStyles = makeStyles(theme => ({
   content: {
     flexGrow: 1,
     padding: theme.spacing(3),
+    minHeight: '100vh',
+    display: 'flex',
+    flexDirection: 'column',
   },
   toolbar: theme.mixins.toolbar,
   link: {
@@ -70,6 +73,7 @@ function RouteWithSubRoutes(route) {
   const renderRoute = () => (
     <Route
       path={route.path}
+      exact={!!route.exact}
       render={props => (
         // pass the sub-routes down to keep nesting
         <route.component {...props} routes={route.routes} />

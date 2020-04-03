@@ -67,11 +67,6 @@ const GameResultsView = ({ gameResults }) => {
             ))}
         </TableBody>
       </Table>
-      <NavLink to="new">
-        <Fab color="secondary" aria-label="add" className={classes.fad}>
-          <AddIcon />
-        </Fab>
-      </NavLink>
     </TableContainer>
   );
 };
