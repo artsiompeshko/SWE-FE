@@ -5,6 +5,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
+import TableSortLabel from '@material-ui/core/TableSortLabel';
 import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
@@ -17,20 +18,72 @@ const useStyles = makeStyles({
   },
 });
 
-const StatisticsView = ({ statistics }) => {
+const StatisticsView = ({ statistics, onRequestSort, orderBy, order }) => {
   const classes = useStyles();
+
+  const createSortHandler = property => event => {
+    onRequestSort(event, property);
+  };
 
   return (
     <TableContainer component={Paper}>
       <Table className={classes.table} aria-label="Statistics view">
         <TableHead>
           <TableRow>
-            <TableCell>Player Name</TableCell>
-            <TableCell>Average Score</TableCell>
-            <TableCell>Top Score</TableCell>
-            <TableCell>Low Score</TableCell>
-            <TableCell>Count Of Games</TableCell>
-            <TableCell>Average Place</TableCell>
+            <TableCell sortDirection={orderBy === 'playerName' ? order : false}>
+              <TableSortLabel
+                active={orderBy === 'playerName'}
+                direction={orderBy === 'playerName' ? order : 'asc'}
+                onClick={createSortHandler('playerName')}
+              >
+                Player Name
+              </TableSortLabel>
+            </TableCell>
+            <TableCell sortDirection={orderBy === 'averageScore' ? order : false}>
+              <TableSortLabel
+                active={orderBy === 'averageScore'}
+                direction={orderBy === 'averageScore' ? order : 'asc'}
+                onClick={createSortHandler('averageScore')}
+              >
+                Average Score
+              </TableSortLabel>
+            </TableCell>
+            <TableCell sortDirection={orderBy === 'topScore' ? order : false}>
+              <TableSortLabel
+                active={orderBy === 'topScore'}
+                direction={orderBy === 'topScore' ? order : 'asc'}
+                onClick={createSortHandler('topScore')}
+              >
+                Top Score
+              </TableSortLabel>
+            </TableCell>
+            <TableCell sortDirection={orderBy === 'lowScore' ? order : false}>
+              <TableSortLabel
+                active={orderBy === 'lowScore'}
+                direction={orderBy === 'lowScore' ? order : 'asc'}
+                onClick={createSortHandler('lowScore')}
+              >
+                Low Score
+              </TableSortLabel>
+            </TableCell>
+            <TableCell sortDirection={orderBy === 'countOfGames' ? order : false}>
+              <TableSortLabel
+                active={orderBy === 'countOfGames'}
+                direction={orderBy === 'countOfGames' ? order : 'asc'}
+                onClick={createSortHandler('countOfGames')}
+              >
+                Count Of Games
+              </TableSortLabel>
+            </TableCell>
+            <TableCell sortDirection={orderBy === 'averagePlace' ? order : false}>
+              <TableSortLabel
+                active={orderBy === 'averagePlace'}
+                direction={orderBy === 'averagePlace' ? order : 'asc'}
+                onClick={createSortHandler('averagePlace')}
+              >
+                Average Place
+              </TableSortLabel>
+            </TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -58,14 +111,17 @@ StatisticsView.defaultProps = {
 };
 
 StatisticsView.propTypes = {
+  onRequestSort: PropTypes.func.isRequired,
+  orderBy: PropTypes.string.isRequired,
+  order: PropTypes.string.isRequired,
   statistics: PropTypes.arrayOf(
     PropTypes.shape({
       playerName: PropTypes.string.isRequired,
-      averageScore: PropTypes.string.isRequired,
+      averageScore: PropTypes.number.isRequired,
       topScore: PropTypes.number.isRequired,
       lowScore: PropTypes.number.isRequired,
-      countOfGames: PropTypes.string.isRequired,
-      averagePlace: PropTypes.string.isRequired,
+      countOfGames: PropTypes.number.isRequired,
+      averagePlace: PropTypes.number.isRequired,
     }),
   ),
 };

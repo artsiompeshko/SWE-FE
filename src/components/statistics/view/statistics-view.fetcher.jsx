@@ -5,15 +5,16 @@ import axios from 'axios';
 import { API } from 'core/constants/api';
 
 import { useAsyncLoad } from 'core/hooks/async-load';
+import { statisticsService } from 'core/statistics';
 
 import { Loadable } from 'shared-components/loadable';
 
-import StasticsView from './statistics-view.presentation';
+import StasticsViewContainer from './statistics-view.container';
 
 const getGeneralStatistic = async () => {
   const { data: statistics } = await axios.get(API.GENERAL_STATISTIC);
 
-  return statistics;
+  return statisticsService.toFixed(statistics);
 };
 
 const StasticsViewFetcher = () => {
@@ -21,7 +22,7 @@ const StasticsViewFetcher = () => {
 
   return (
     <Loadable isLoading={isLoading} loadError={loadError}>
-      <StasticsView statistics={payload} />
+      <StasticsViewContainer statistics={payload} />
     </Loadable>
   );
 };
