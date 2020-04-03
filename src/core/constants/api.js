@@ -1,5 +1,5 @@
 let BASE_API;
-if (process.env.NODE_ENV === 'prod') {
+if (process.env.NODE_ENV === 'production') {
   BASE_API = process.env.API || '/api';
 } else {
   BASE_API = process.env.API || 'https://ec2-52-31-254-28.eu-west-1.compute.amazonaws.com:3000';
