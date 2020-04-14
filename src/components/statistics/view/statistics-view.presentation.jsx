@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { NavLink } from 'react-router-dom';
+
 import { makeStyles } from '@material-ui/core/styles';
 
 import Table from '@material-ui/core/Table';
@@ -91,7 +93,7 @@ const StatisticsView = ({ statistics, onRequestSort, orderBy, order }) => {
             statistics.map(row => (
               <TableRow key={row.playerId}>
                 <TableCell component="th" scope="row">
-                  {row.playerName}
+                  <NavLink to={`/player/${row.playerId}`}>{row.playerName}</NavLink>
                 </TableCell>
                 <TableCell>{row.averageScore}</TableCell>
                 <TableCell>{row.topScore}</TableCell>

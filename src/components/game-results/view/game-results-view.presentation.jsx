@@ -52,7 +52,9 @@ const GameResultsView = ({ gameResults }) => {
           {gameResults &&
             gameResults.map(gameResult => (
               <TableRow key={gameResult.id}>
-                <TableCell>{gameResult.player.name}</TableCell>
+                <TableCell>
+                  <NavLink to={`/player/${gameResult.player.id}`}>{gameResult.player.name}</NavLink>
+                </TableCell>
                 <TableCell>{gameResult.brown}</TableCell>
                 <TableCell>{gameResult.gold}</TableCell>
                 <TableCell>{gameResult.levels}</TableCell>

@@ -56,7 +56,7 @@ const Navigation = () => {
           <ListItemIcon>
             <RowingIcon />
           </ListItemIcon>
-          <ListItemText>Wariors</ListItemText>
+          <ListItemText>Warriors</ListItemText>
         </ListItemLink>
       </List>
     </Drawer>

@@ -6,6 +6,8 @@ import { GameResultsView } from 'components/game-results/view';
 import { PlayersView } from 'components/players/view';
 import { PlayersNew } from 'components/players/new';
 
+import { PlayerView } from 'components/player/view';
+
 import { StatisticsView } from 'components/statistics/view';
 
 import { Home } from 'components/home';
@@ -50,5 +52,9 @@ export const routes = [
     path: '/players/new',
     component: PlayersNew,
     permissions: PERMISSIONS.ADMIN,
+  },
+  {
+    path: '/player/:playerId',
+    component: PlayerView,
   },
 ];

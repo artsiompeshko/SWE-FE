@@ -44,7 +44,7 @@ const PlayersView = ({ players }) => {
         <TableBody>
           {players &&
             players.map(player => (
-              <TableRow key={player.id}>
+              <TableRow key={player.id} hover component={NavLink} to={`/player/${player.id}`}>
                 <TableCell>{player.name}</TableCell>
                 <TableCell>{player.email}</TableCell>
               </TableRow>
