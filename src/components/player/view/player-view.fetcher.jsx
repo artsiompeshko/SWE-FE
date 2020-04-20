@@ -12,17 +12,17 @@ import { Loadable } from 'shared-components/loadable';
 import { playersService } from 'core/players';
 import { statisticsService } from 'core/statistics';
 
-import PlayerView from './player-view.presentation';
+import PlayerViewContainer from './player-view.container';
 
 const getPlayerData = async ({ playerId }) => {
   const { data: statistics } = await axios.get(API.PLAYER_STATISTIC, { params: { id: playerId } });
   const { data: players } = await axios.get(API.PLAYERS);
 
   return {
-    statistics: {
-      averageStatistics: statisticsService.toFixed(statistics.averageStatistics),
-      normalStatistics: statisticsService.toFixed(statistics.normalStatistics),
-    },
+    statistics: statisticsService.combine({
+      average: statisticsService.toFixed(statistics.averageStatistics),
+      normal: statisticsService.toFixed(statistics.normalStatistics),
+    }),
     player: playersService.getPlayer(playerId, players),
   };
 };
@@ -33,7 +33,7 @@ const PlayerViewFetcher = () => {
 
   return (
     <Loadable isLoading={isLoading} loadError={loadError}>
-      <PlayerView statistics={payload?.statistics} player={payload?.player} />
+      <PlayerViewContainer statistics={payload?.statistics} player={payload?.player} />
     </Loadable>
   );
 };

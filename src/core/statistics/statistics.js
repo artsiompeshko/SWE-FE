@@ -13,6 +13,13 @@ const toFixed = statistics =>
     return result;
   });
 
+const combine = statistics =>
+  statistics.average.map((metric, index) => ({
+    ...metric,
+    ...statistics.normal[index],
+  }));
+
 export default {
   toFixed,
+  combine,
 };

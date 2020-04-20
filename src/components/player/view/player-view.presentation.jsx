@@ -6,6 +6,11 @@ import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
+import FormControl from '@material-ui/core/FormControl';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormLabel from '@material-ui/core/FormLabel';
+import FormGroup from '@material-ui/core/FormGroup';
+import Checkbox from '@material-ui/core/Checkbox';
 
 import {
   LineChart,
@@ -38,86 +43,58 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const PlayerView = ({ player, statistics }) => {
+const PlayerView = ({ player, statistics, metrics, toggleMetric }) => {
   const classes = useStyles();
 
   return (
-    <Grid className={classes.root} container spacing={3}>
+    <Grid className={classes.root} container>
       <Grid item xs={12}>
         <Paper className={classes.paper}>
           <Typography className={classes.title} variant="h4" noWrap>
             {player?.name}
           </Typography>
-          <Grid container className={classes.analytics}>
-            <Grid item xs={6}>
-              <Typography variant="h6" noWrap className={classes.chartTitle}>
-                Total over time
-              </Typography>
+          <Grid container className={classes.analytics} spacing={3}>
+            <Grid item xs={9}>
               <ResponsiveContainer height={300}>
-                <LineChart data={statistics.normalStatistics}>
+                <LineChart data={statistics}>
                   <CartesianGrid strokeDasharray="3 3" />
                   <XAxis />
                   <YAxis />
                   <Tooltip />
                   <Legend />
-                  <Line type="monotone" name="Total" dataKey="total" stroke="#8884d8" />
+                  {metrics
+                    .filter(metric => metric.checked)
+                    .map(metric => (
+                      <Line
+                        key={metric.key}
+                        type="monotone"
+                        name={metric.title}
+                        dataKey={metric.key}
+                        stroke={metric.color}
+                      />
+                    ))}
                 </LineChart>
               </ResponsiveContainer>
             </Grid>
-            <Grid item xs={6}>
-              <Typography variant="h6" noWrap className={classes.chartTitle}>
-                Place over time
-              </Typography>
-              <ResponsiveContainer height={300}>
-                <LineChart height={300} data={statistics.normalStatistics}>
-                  <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis />
-                  <YAxis />
-                  <Tooltip />
-                  <Legend />
-                  <Line type="monotone" name="Place" dataKey="place" stroke="#82ca9d" />
-                </LineChart>
-              </ResponsiveContainer>
-            </Grid>
-            <Grid item xs={6}>
-              <Typography variant="h6" noWrap className={classes.chartTitle}>
-                Average Total over time
-              </Typography>
-              <ResponsiveContainer height={300}>
-                <LineChart height={300} data={statistics.averageStatistics}>
-                  <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis />
-                  <YAxis />
-                  <Tooltip />
-                  <Legend />
-                  <Line
-                    type="monotone"
-                    name="Average Total"
-                    dataKey="averageTotal"
-                    stroke="#a11a10"
-                  />
-                </LineChart>
-              </ResponsiveContainer>
-            </Grid>
-            <Grid item xs={6}>
-              <Typography variant="h6" noWrap className={classes.chartTitle}>
-                Average Place over time
-              </Typography>
-              <ResponsiveContainer height={300}>
-                <LineChart height={300} data={statistics.averageStatistics}>
-                  <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis />
-                  <YAxis />
-                  <Tooltip />
-                  <Legend />
-                  <Line
-                    type="monotone"
-                    name="Average Place"
-                    dataKey="averagePlace"
-                    stroke="#c98506"
-                  />
-                </LineChart>
-              </ResponsiveContainer>
+            <Grid item xs={3}>
+              <FormControl component="fieldset" className={classes.formControl}>
+                <FormLabel component="legend">Available Metrics</FormLabel>
+                <FormGroup>
+                  {metrics.map(metric => (
+                    <FormControlLabel
+                      key={metric.key}
+                      control={
+                        <Checkbox
+                          checked={metric.checked}
+                          onChange={() => toggleMetric(metric)}
+                          name={metric.key}
+                        />
+                      }
+                      label={metric.title}
+                    />
+                  ))}
+                </FormGroup>
+              </FormControl>
             </Grid>
           </Grid>
         </Paper>
@@ -136,20 +113,21 @@ PlayerView.propTypes = {
     name: PropTypes.string.isRequired,
     email: PropTypes.string.isRequired,
   }),
-  statistics: PropTypes.shape({
-    averageStatistics: PropTypes.arrayOf(
-      PropTypes.shape({
-        averagePlace: PropTypes.number,
-        averageTotal: PropTypes.number,
-      }),
-    ),
-    normalStatistics: PropTypes.arrayOf(
-      PropTypes.shape({
-        place: PropTypes.number,
-        total: PropTypes.number,
-      }),
-    ),
-  }),
+  statistics: PropTypes.arrayOf(
+    PropTypes.shape({
+      averagePlace: PropTypes.number,
+      averageTotal: PropTypes.number,
+      place: PropTypes.number,
+      total: PropTypes.number,
+    }),
+  ),
+  toggleMetric: PropTypes.func.isRequired,
+  metrics: PropTypes.arrayOf(
+    PropTypes.shape({
+      key: PropTypes.string,
+      title: PropTypes.string,
+    }),
+  ).isRequired,
 };
 
 export default PlayerView;
