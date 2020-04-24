@@ -6,6 +6,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { NavLink } from 'react-router-dom';
 
 import { AdminPermissions } from 'shared-components/admin-permissions';
+import { PlayerRow } from 'shared-components/player-row';
 
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -45,7 +46,9 @@ const PlayersView = ({ players }) => {
           {players &&
             players.map(player => (
               <TableRow key={player.id} hover component={NavLink} to={`/player/${player.id}`}>
-                <TableCell>{player.name}</TableCell>
+                <TableCell>
+                  <PlayerRow player={player} />
+                </TableCell>
                 <TableCell>{player.email}</TableCell>
               </TableRow>
             ))}

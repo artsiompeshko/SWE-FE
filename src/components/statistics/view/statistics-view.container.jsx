@@ -5,7 +5,7 @@ import { arrayUtils } from 'core/utils';
 
 import StatisticsView from './statistics-view.presentation';
 
-const StatisticsViewContainer = ({ statistics }) => {
+const StatisticsViewContainer = ({ statistics, ...props }) => {
   const [order, setOrder] = useState('desc');
   const [orderBy, setOrderBy] = useState('averageScore');
 
@@ -26,6 +26,7 @@ const StatisticsViewContainer = ({ statistics }) => {
       orderBy={orderBy}
       onRequestSort={handleRequestSort}
       statistics={sortedStatistics}
+      {...props}
     />
   );
 };

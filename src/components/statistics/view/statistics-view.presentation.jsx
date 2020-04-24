@@ -14,13 +14,16 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 
+import { PlayerRow } from 'shared-components/player-row';
+import { playersService } from 'core/players';
+
 const useStyles = makeStyles({
   table: {
     minWidth: 650,
   },
 });
 
-const StatisticsView = ({ statistics, onRequestSort, orderBy, order }) => {
+const StatisticsView = ({ statistics, players, onRequestSort, orderBy, order }) => {
   const classes = useStyles();
 
   const createSortHandler = property => event => {
@@ -93,7 +96,9 @@ const StatisticsView = ({ statistics, onRequestSort, orderBy, order }) => {
             statistics.map(row => (
               <TableRow key={row.playerId}>
                 <TableCell component="th" scope="row">
-                  <NavLink to={`/player/${row.playerId}`}>{row.playerName}</NavLink>
+                  <NavLink to={`/player/${row.playerId}`}>
+                    <PlayerRow player={playersService.getPlayer(row.playerId, players)} />
+                  </NavLink>
                 </TableCell>
                 <TableCell>{row.averageScore}</TableCell>
                 <TableCell>{row.topScore}</TableCell>
@@ -110,12 +115,19 @@ const StatisticsView = ({ statistics, onRequestSort, orderBy, order }) => {
 
 StatisticsView.defaultProps = {
   statistics: null,
+  players: null,
 };
 
 StatisticsView.propTypes = {
   onRequestSort: PropTypes.func.isRequired,
   orderBy: PropTypes.string.isRequired,
   order: PropTypes.string.isRequired,
+  players: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      id: PropTypes.number.isRequired,
+    }),
+  ),
   statistics: PropTypes.arrayOf(
     PropTypes.shape({
       playerName: PropTypes.string.isRequired,

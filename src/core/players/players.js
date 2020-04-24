@@ -1,4 +1,4 @@
-const getPlayer = (playerId, players) => players.find(player => +player.id === +playerId);
+const getPlayer = (playerId, players) => players?.find(player => +player.id === +playerId);
 
 export default {
   getPlayer,

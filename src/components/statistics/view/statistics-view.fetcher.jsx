@@ -13,8 +13,12 @@ import StasticsViewContainer from './statistics-view.container';
 
 const getGeneralStatistic = async () => {
   const { data: statistics } = await axios.get(API.GENERAL_STATISTIC);
+  const { data: players } = await axios.get(API.PLAYERS);
 
-  return statisticsService.toFixed(statistics);
+  return {
+    statistics: statisticsService.toFixed(statistics),
+    players,
+  };
 };
 
 const StasticsViewFetcher = () => {
@@ -22,7 +26,7 @@ const StasticsViewFetcher = () => {
 
   return (
     <Loadable isLoading={isLoading} loadError={loadError}>
-      <StasticsViewContainer statistics={payload} />
+      <StasticsViewContainer statistics={payload?.statistics} players={payload?.players} />
     </Loadable>
   );
 };

@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { Achievements } from 'shared-components/achievements';
+
 import { makeStyles } from '@material-ui/core/styles';
 
 import Paper from '@material-ui/core/Paper';
@@ -39,6 +41,9 @@ const useStyles = makeStyles(theme => ({
     marginLeft: theme.spacing(2),
   },
   title: {
+    display: 'flex',
+    aligItems: 'center',
+    justifyContent: 'center',
     textAlign: 'center',
   },
 }));
@@ -52,8 +57,9 @@ const PlayerView = ({ player, statistics, metrics, toggleMetric }) => {
         <Paper className={classes.paper}>
           <Typography className={classes.title} variant="h4" noWrap>
             {player?.name}
+            <Achievements achievements={player?.achievements} size="large" />
           </Typography>
-          <Grid container className={classes.analytics} spacing={3}>
+          <Grid container className={classes.analytics} spacing={5}>
             <Grid item xs={9}>
               <ResponsiveContainer height={300}>
                 <LineChart data={statistics}>
