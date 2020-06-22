@@ -11,6 +11,9 @@ const useStyles = makeStyles(theme => ({
     alignItems: 'center',
     marginLeft: theme.spacing(1),
     marginRight: theme.spacing(1),
+    '& > *:not(:last-child)': {
+      marginRight: theme.spacing(1),
+    },
   },
 }));
 
