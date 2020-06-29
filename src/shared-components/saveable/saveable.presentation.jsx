@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 
+import classnames from 'classnames';
+
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
@@ -27,14 +29,22 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const Saveable = ({ children, saveHandler, isLoading, saveText, cancelText, loadError }) => {
+const Saveable = ({
+  children,
+  saveHandler,
+  isLoading,
+  saveText,
+  cancelText,
+  loadError,
+  className,
+}) => {
   const classes = useStyles();
   const history = useHistory();
 
   const goBack = useCallback(() => history.goBack(), [history]);
 
   return (
-    <form className={classes.root} onSubmit={e => e.preventDefault()}>
+    <form className={classnames(classes.root, className)} onSubmit={e => e.preventDefault()}>
       <Grid container spacing={3}>
         <Grid item xs={12}>
           <Paper className={classes.paper}>{children}</Paper>
@@ -79,6 +89,7 @@ Saveable.defaultProps = {
   loadError: null,
   saveText: 'Save',
   cancelText: 'Cancel',
+  className: null,
 };
 
 Saveable.propTypes = {
@@ -89,6 +100,7 @@ Saveable.propTypes = {
   }),
   saveText: PropTypes.string,
   cancelText: PropTypes.string,
+  className: PropTypes.string,
 };
 
 export default Saveable;

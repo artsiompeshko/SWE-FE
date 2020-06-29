@@ -1,6 +1,8 @@
 import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 
+import { makeStyles } from '@material-ui/core/styles';
+
 import { Saveable } from 'shared-components/saveable';
 
 import { useHistory } from 'react-router-dom';
@@ -9,6 +11,16 @@ import { useValidation } from './hooks/login.validation-hook';
 import { useLoginState } from './hooks/login.state.hook';
 
 import Login from './login.presentation';
+
+const useStyles = makeStyles(theme => ({
+  root: {
+    width: 640,
+    margin: '0 auto',
+    '& button': {
+      width: '100%',
+    },
+  },
+}));
 
 const LoginContainer = ({ loginHandler, isLoading, loadError }) => {
   const history = useHistory();
@@ -25,6 +37,8 @@ const LoginContainer = ({ loginHandler, isLoading, loadError }) => {
     history.push('/players/view');
   }, [loginHandler, email, password, history, validate]);
 
+  const classes = useStyles();
+
   return (
     <Saveable
       isLoading={isLoading}
@@ -32,6 +46,7 @@ const LoginContainer = ({ loginHandler, isLoading, loadError }) => {
       saveHandler={login}
       saveText="Login"
       cancelText={null}
+      className={classes.root}
     >
       <Login
         email={email}
