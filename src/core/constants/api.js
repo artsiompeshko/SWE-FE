@@ -11,4 +11,6 @@ export const API = {
   PLAYER_STATISTIC: `${BASE_API}/statistics/player`,
   GAMES: `${BASE_API}/games`,
   GAME_RESULTS: `${BASE_API}/game-results`,
+  AUTH_TOKEN: `${BASE_API}/auth/token`,
+  LOGIN: `${BASE_API}/auth/login`,
 };

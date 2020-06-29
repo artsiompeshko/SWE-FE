@@ -1,3 +1,5 @@
+import { Login } from 'components/login';
+
 import { GamesView } from 'components/games/view';
 import { GamesNew } from 'components/games/new';
 
@@ -26,6 +28,12 @@ export const routes = [
     path: '/',
     exact: true,
     component: Home,
+    public: true,
+  },
+  {
+    path: '/login',
+    component: Login,
+    public: true,
   },
   {
     path: '/statistics/view',

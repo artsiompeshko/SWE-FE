@@ -14,6 +14,7 @@ export const usePlayer = initialState => {
       name: event.target.value,
     });
   };
+
   const handleEmailChange = event => {
     setPlayer({
       ...player,

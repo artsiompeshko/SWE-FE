@@ -14,6 +14,8 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
+import { PrivateRoute } from './private-route';
+
 import { routes } from './routes';
 
 const useStyles = makeStyles(theme => ({
@@ -70,16 +72,20 @@ const Router = () => {
 // handle "sub"-routes by passing them in a `routes`
 // prop to the component it renders.
 function RouteWithSubRoutes(route) {
-  const renderRoute = () => (
-    <Route
-      path={route.path}
-      exact={!!route.exact}
-      render={props => (
-        // pass the sub-routes down to keep nesting
-        <route.component {...props} routes={route.routes} />
-      )}
-    />
-  );
+  const renderRoute = () => {
+    const RenderRoute = route.public ? Route : PrivateRoute;
+
+    return (
+      <RenderRoute
+        path={route.path}
+        exact={!!route.exact}
+        render={props => (
+          // pass the sub-routes down to keep nesting
+          <route.component {...props} routes={route.routes} />
+        )}
+      />
+    );
+  };
 
   if (route.permissions && route.permissions === PERMISSIONS.ADMIN) {
     return <AdminPermissions showForbidden>{renderRoute()}</AdminPermissions>;
