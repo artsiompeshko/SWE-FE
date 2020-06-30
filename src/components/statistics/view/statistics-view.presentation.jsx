@@ -80,6 +80,15 @@ const StatisticsView = ({ statistics, players, onRequestSort, orderBy, order }) 
                 Count Of Games
               </TableSortLabel>
             </TableCell>
+            <TableCell sortDirection={orderBy === 'countOfWins' ? order : false}>
+              <TableSortLabel
+                active={orderBy === 'countOfWins'}
+                direction={orderBy === 'countOfWins' ? order : 'asc'}
+                onClick={createSortHandler('countOfWins')}
+              >
+                Count Of Wins
+              </TableSortLabel>
+            </TableCell>
             <TableCell sortDirection={orderBy === 'averagePlace' ? order : false}>
               <TableSortLabel
                 active={orderBy === 'averagePlace'}
@@ -104,6 +113,7 @@ const StatisticsView = ({ statistics, players, onRequestSort, orderBy, order }) 
                 <TableCell>{row.topScore}</TableCell>
                 <TableCell>{row.lowScore}</TableCell>
                 <TableCell>{row.countOfGames}</TableCell>
+                <TableCell>{row.countOfWins}</TableCell>
                 <TableCell>{row.averagePlace}</TableCell>
               </TableRow>
             ))}
@@ -135,6 +145,7 @@ StatisticsView.propTypes = {
       topScore: PropTypes.number.isRequired,
       lowScore: PropTypes.number.isRequired,
       countOfGames: PropTypes.number.isRequired,
+      countOfWins: PropTypes.number.isRequired,
       averagePlace: PropTypes.number.isRequired,
     }),
   ),

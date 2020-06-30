@@ -14,9 +14,15 @@ const getMetadata = key => {
         Icon: WhatshotIcon,
         color: '#ce2029',
       };
+
     case ACHIEVEMENT.OUTDATED.key:
       return {
         imageUrl: '/spider.gif',
+      };
+
+    case ACHIEVEMENT.LEADER.key:
+      return {
+        imageUrl: '/leader.png',
       };
 
     default:

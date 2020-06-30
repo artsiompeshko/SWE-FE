@@ -6,7 +6,7 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles({
   image: props => ({
     backgroundImage: `url(${props.imageUrl})`,
-    backgroundSize: 'cover',
+    backgroundSize: 'contain',
     backgroundPosition: 'center',
     backgroundRepeat: 'no-repeat',
   }),
