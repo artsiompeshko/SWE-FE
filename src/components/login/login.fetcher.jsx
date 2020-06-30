@@ -10,10 +10,17 @@ const login = async ({ email, password }) => {
   await loginService.login({ email, password });
 };
 
-const GamesNewFetcher = () => {
+const LoginFetcher = props => {
   const { isLoading, loadError, payload, saveHandler } = useAsyncSave(login);
 
-  return <LoginContainer loginHandler={saveHandler} isLoading={isLoading} loadError={loadError} />;
+  return (
+    <LoginContainer
+      loginHandler={saveHandler}
+      isLoading={isLoading}
+      loadError={loadError}
+      {...props}
+    />
+  );
 };
 
-export default GamesNewFetcher;
+export default LoginFetcher;

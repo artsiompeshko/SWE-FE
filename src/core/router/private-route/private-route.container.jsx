@@ -6,7 +6,7 @@ import { useLocation, Redirect, Route } from 'react-router-dom';
 import { LoggedUserContext } from 'core/context/logged-user';
 
 const PrivateRouteContainer = ({ user, render, ...rest }) => {
-  const { location } = useLocation();
+  const location = useLocation();
 
   return (
     <Route

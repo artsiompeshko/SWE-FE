@@ -22,8 +22,9 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const LoginContainer = ({ loginHandler, isLoading, loadError }) => {
+const LoginContainer = ({ loginHandler, isLoading, loadError, location }) => {
   const history = useHistory();
+
   const [email, handleEmailChange, password, handlePasswordChange] = useLoginState();
   const [errors, validate] = useValidation(email, password);
 
@@ -34,8 +35,8 @@ const LoginContainer = ({ loginHandler, isLoading, loadError }) => {
 
     await loginHandler({ email, password });
 
-    history.push('/players/view');
-  }, [loginHandler, email, password, history, validate]);
+    history.push(location.state.from);
+  }, [loginHandler, email, password, history, validate, location]);
 
   const classes = useStyles();
 
