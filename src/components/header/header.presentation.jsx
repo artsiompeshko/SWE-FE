@@ -38,7 +38,7 @@ const Header = ({ user }) => {
           to={`/${user?.playerId ? `player/${user.playerId}` : ''}`}
           className={classnames(classes.link, classes.profile)}
         >
-          <Typography variant="p" noWrap>
+          <Typography variant="subtitle1" noWrap>
             {user?.email}
           </Typography>
         </Link>

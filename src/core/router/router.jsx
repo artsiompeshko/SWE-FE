@@ -64,19 +64,27 @@ function RouteWithSubRoutes(route) {
       <RenderRoute
         path={route.path}
         exact={!!route.exact}
-        render={props => (
-          <>
-            <Header />
-            <route.component {...props} routes={route.routes} />
-          </>
-        )}
+        render={props => {
+          let Wrapper = React.Fragment;
+          const wrapperProps = {};
+
+          if (route.permissions && route.permissions === PERMISSIONS.ADMIN) {
+            Wrapper = AdminPermissions;
+            wrapperProps.showForbidden = true;
+          }
+
+          return (
+            <>
+              <Header />
+              <Wrapper {...wrapperProps}>
+                <route.component {...props} routes={route.routes} />
+              </Wrapper>
+            </>
+          );
+        }}
       />
     );
   };
-
-  if (route.permissions && route.permissions === PERMISSIONS.ADMIN) {
-    return <AdminPermissions showForbidden>{renderRoute()}</AdminPermissions>;
-  }
 
   return renderRoute();
 }
