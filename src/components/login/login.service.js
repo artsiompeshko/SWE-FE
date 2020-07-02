@@ -9,7 +9,7 @@ const login = async ({ email, password }) => {
     password,
   });
 
-  cookieService.set('user_token', result.data.access_token);
+  cookieService.set('user_token', result.data.access_token, 20);
   axios.defaults.headers.common.Authorization = `Bearer ${result.data.access_token}`;
 
   return result;

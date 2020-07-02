@@ -10,7 +10,13 @@ import { Loadable } from 'shared-components/loadable';
 import PrivateRouteContainer from './private-route.container';
 
 const getUser = async () => {
+  if (getUser.user) {
+    return getUser.user;
+  }
+
   const { data: user } = await axios.get(API.AUTH_TOKEN);
+
+  getUser.user = user;
 
   return user;
 };

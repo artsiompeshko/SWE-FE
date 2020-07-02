@@ -4,14 +4,11 @@ import { BrowserRouter as DomRouter, Switch, Route, Link } from 'react-router-do
 
 import { AdminPermissions } from 'shared-components/admin-permissions';
 import { Navigation } from 'components/navigation';
+import { Header } from 'components/header';
 
 import { PERMISSIONS } from 'core/constants/permissions';
 
 import { makeStyles } from '@material-ui/core/styles';
-
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
 import { PrivateRoute } from './private-route';
@@ -33,9 +30,6 @@ const useStyles = makeStyles(theme => ({
     flexDirection: 'column',
   },
   toolbar: theme.mixins.toolbar,
-  link: {
-    color: theme.palette.common.white,
-  },
 }));
 
 const Router = () => {
@@ -45,15 +39,6 @@ const Router = () => {
     <DomRouter>
       <section className={classes.root}>
         <CssBaseline />
-        <AppBar position="fixed" className={classes.appBar}>
-          <Toolbar>
-            <Link to="/" className={classes.link}>
-              <Typography variant="h6" noWrap>
-                SWE 2020
-              </Typography>
-            </Link>
-          </Toolbar>
-        </AppBar>
         <Navigation />
         <main className={classes.content}>
           <div className={classes.toolbar} />
@@ -80,8 +65,10 @@ function RouteWithSubRoutes(route) {
         path={route.path}
         exact={!!route.exact}
         render={props => (
-          // pass the sub-routes down to keep nesting
-          <route.component {...props} routes={route.routes} />
+          <>
+            <Header />
+            <route.component {...props} routes={route.routes} />
+          </>
         )}
       />
     );

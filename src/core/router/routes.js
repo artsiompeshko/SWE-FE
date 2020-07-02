@@ -28,7 +28,6 @@ export const routes = [
     path: '/',
     exact: true,
     component: Home,
-    public: true,
   },
   {
     path: '/login',

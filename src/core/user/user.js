@@ -1,6 +1,4 @@
-import { cookieService } from 'core/cookie';
-
-const isAdmin = () => !!cookieService.get('isAdmin');
+const isAdmin = user => user.role === 'admin';
 
 export default {
   isAdmin,
