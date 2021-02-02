@@ -2,7 +2,7 @@ let BASE_API;
 if (process.env.NODE_ENV === 'production') {
   BASE_API = process.env.API || '/api';
 } else {
-  BASE_API = process.env.API || 'http://ec2-3-249-190-138.eu-west-1.compute.amazonaws.com:3000';
+  BASE_API = process.env.API || 'http://ec2-3-250-184-217.eu-west-1.compute.amazonaws.com:3000';
 }
 
 export const API = {
