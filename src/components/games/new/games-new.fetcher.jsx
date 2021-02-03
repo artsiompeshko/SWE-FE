@@ -2,6 +2,7 @@ import React from 'react';
 
 import axios from 'axios';
 
+import { CUR_SEASON } from 'core/constants/season';
 import { API } from 'core/constants/api';
 
 import { useAsyncSave, useAsyncLoad } from 'core/hooks/async-load';
@@ -13,7 +14,7 @@ import GamesNew from './games-new.container';
 import { gamesNewService } from './games-new.service';
 
 const saveGame = async ({ gameResults }) => {
-  const { data: game } = await axios.post(API.GAMES);
+  const { data: game } = await axios.post(API.GAMES, { season: CUR_SEASON });
   const extendedGameResults = gamesNewService.convertForApi({
     gameResults: gamesNewService.extendWithGame({ gameResults, game }),
   });

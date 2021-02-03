@@ -12,6 +12,7 @@ import GamesIcon from '@material-ui/icons/Games';
 import RowingIcon from '@material-ui/icons/Rowing';
 
 import { ListItemLink } from 'shared-components/list-item-link';
+import { SeasonSelector } from 'shared-components/season-selector';
 
 const drawerWidth = 240;
 
@@ -23,7 +24,19 @@ const useStyles = makeStyles(theme => ({
   drawerPaper: {
     width: drawerWidth,
   },
+  list: {
+    flex: '1 1 100%',
+  },
   toolbar: theme.mixins.toolbar,
+  footer: {
+    display: 'flex',
+    alignItems: 'center',
+    background: '#eaeaea',
+    padding: '1rem',
+  },
+  footerText: {
+    margin: '0 1rem 0 0',
+  },
 }));
 
 const Navigation = () => {
@@ -39,7 +52,7 @@ const Navigation = () => {
       anchor="left"
     >
       <div className={classes.toolbar} />
-      <List>
+      <List className={classes.list}>
         <ListItemLink to="/statistics/view">
           <ListItemIcon>
             <EqualizerIcon />
@@ -59,6 +72,10 @@ const Navigation = () => {
           <ListItemText>Warriors</ListItemText>
         </ListItemLink>
       </List>
+      <div className={classes.footer}>
+        <p className={classes.footerText}>Season:</p>
+        <SeasonSelector />
+      </div>
     </Drawer>
   );
 };

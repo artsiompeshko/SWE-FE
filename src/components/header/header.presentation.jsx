@@ -31,7 +31,7 @@ const Header = ({ user }) => {
       <Toolbar>
         <Link to="/" className={classes.link}>
           <Typography variant="h6" noWrap>
-            SWE 2020
+            SWE KT
           </Typography>
         </Link>
         <Link

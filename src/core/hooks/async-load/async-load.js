@@ -1,9 +1,11 @@
-import { useEffect, useState } from 'react';
+import { SeasonContext } from 'core/context/season';
+import { useEffect, useState, useContext } from 'react';
 
 export default (loader, ...params) => {
   const [isLoading, setIsLoading] = useState(true);
   const [loadError, setLoadError] = useState(null);
   const [payload, setPayload] = useState(null);
+  const { season } = useContext(SeasonContext);
 
   useEffect(() => {
     const load = async () => {
@@ -21,7 +23,7 @@ export default (loader, ...params) => {
       }
     };
     load();
-  }, [loader]);
+  }, [loader, season]);
 
   return { isLoading, loadError, payload };
 };

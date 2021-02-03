@@ -1,6 +1,9 @@
+import { CUR_SEASON } from 'core/constants/season';
+
 const transformGridDataToGameResults = ({ rows, players }) => {
   const result = rows.map(row => ({
     ...row,
+    season: CUR_SEASON,
     playerId: players.filter(player => player.name === row.playerId)[0].id,
   }));
 
@@ -25,6 +28,7 @@ const convertForApi = ({ gameResults }) =>
   gameResults.map(gameResult => ({
     ...gameResult,
     playerId: +gameResult.playerId,
+    season: CUR_SEASON,
   }));
 
 const isValid = ({ rows }) =>
