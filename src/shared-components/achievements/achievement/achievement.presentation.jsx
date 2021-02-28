@@ -25,6 +25,21 @@ const getMetadata = key => {
         imageUrl: '/leader.png',
       };
 
+    case ACHIEVEMENT.CHAMPION_2020_1.key:
+      return {
+        imageUrl: '/medal_first.png',
+      };
+
+    case ACHIEVEMENT.CHAMPION_2020_2.key:
+      return {
+        imageUrl: '/medal_second.png',
+      };
+
+    case ACHIEVEMENT.CHAMPION_2020_3.key:
+      return {
+        imageUrl: '/medal_third.png',
+      };
+
     default:
       return {};
   }
@@ -32,6 +47,10 @@ const getMetadata = key => {
 
 const Achievement = ({ achievementKey, size }) => {
   const achievement = ACHIEVEMENT[achievementKey];
+
+  if (!achievement) {
+    return null;
+  }
 
   const { Icon, color, imageUrl } = getMetadata(achievementKey);
 
